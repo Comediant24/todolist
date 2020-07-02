@@ -1,12 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 
-.root {
-  width: 500px;
-  margin: auto;
-  /* background-color: #F2F6F9; */
-}
-
 .page {
+  margin: auto;
+  width: 500px;
   font-family: 'Noto Sans', sans-serif;
   color: #364655;
 }
@@ -16,7 +12,6 @@
   display: flex;
   border: 1px solid #C2CBD2;
   border-bottom: 0;
-  border-top: 0;
 }
 
 .header__title {
@@ -25,3 +20,64 @@
   padding: 20px 20px;
   margin: 0;
 }
+
+.content {
+  background-color: #F3F4F8;
+  border: 1px solid #C2CBD2;
+}
+
+.day {
+  width: 90%;
+  margin: auto;
+}
+
+.day__title {
+  color: #40C785;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+}
+
+.todo__item {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  border: 1px solid #C2CBD2;
+  border-radius: 5px;
+  padding: 15px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.todo__item-wrapper {
+  max-width: 70%;
+}
+
+.todo__list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo__title {
+  font-weight: 500;
+  padding-bottom: 10px;
+  margin: 0;
+  max-width: 80%;
+}
+
+.todo__description {
+  color: #BAC3CA;
+  padding: 0px;
+  margin: 0;
+}
+
+.todo__button-wrapper {
+  display: flex;
+  align-items: center;
+}
+
