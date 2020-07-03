@@ -67,6 +67,10 @@
   margin: 0;
 }
 
+.todo__list:last-of-type {
+  margin-bottom: 25px;
+}
+
 .todo__title {
   font-weight: 500;
   padding-bottom: 10px;
