@@ -1,0 +1,20 @@
+.task {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task__day-title {
+  color: #40C785;
+}
+
+.task__button-add {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.task__button-add:hover {
+  transform: rotate(90deg);
+}
