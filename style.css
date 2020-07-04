@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+@keyframes rotation {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(110deg);
+  }
+}
 
 .page {
   margin: auto;
@@ -31,10 +39,20 @@
   margin: auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .day__title {
   color: #40C785;
+}
+
+.task__button-add {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.task__button-add:hover {
+  transform: rotate(90deg);
 }
 
 .button {
