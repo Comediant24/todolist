@@ -95,8 +95,19 @@
   margin: 0;
 }
 
+.todo__button-wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .todo__button {
   padding: 5px;
+  opacity: 0.2;
+  transition: opacity 0.2s ease;
+}
+
+.todo__button:hover {
+  opacity: 0.8;
 }
 
 .todo__description {
@@ -104,9 +115,3 @@
   padding: 0px;
   margin: 0;
 }
-
-.todo__button-wrapper {
-  display: flex;
-  align-items: center;
-}
-
