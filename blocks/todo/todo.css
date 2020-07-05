@@ -11,8 +11,15 @@
   margin-bottom: 10px;
 }
 
+
 .todo__item-wrapper {
   max-width: 70%;
+}
+
+.todo__form {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
 }
 
 .todo__list {
@@ -29,6 +36,8 @@
   font-weight: 500;
   padding-bottom: 10px;
   margin: 0;
+  font-size: 24px;
+  color: #364655;
 }
 
 .todo__button-wrapper {
@@ -46,8 +55,40 @@
   opacity: 0.8;
 }
 
+.todo__button_type_save {
+  opacity: 0.6;
+}
+
 .todo__description {
   color: #BAC3CA;
   padding: 0px;
   margin: 0;
+}
+
+.todo__input-conteier {
+  padding: 0;
+  border: 0;
+  max-width: 70%;
+}
+
+.todo__input {
+  padding-bottom: 5px;
+  border: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.todo__input:hover {
+  border-bottom: 1px solid #BAC3CA; 
+}
+.todo__input:focus {
+  border: 0; 
+}
+
+.todo__input:active {
+  border: 0; 
+}
+
+.todo__input_type_description {
+  margin-top: 3px;
 }
