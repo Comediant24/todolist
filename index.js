@@ -32,15 +32,28 @@ function createNewTask (title, description) {
   taskNewItem.querySelector('.todo__title').textContent = title;
   taskNewItem.querySelector('.todo__description').textContent = description;
   
-  deleteTask (taskNewItem)
+  todoEventListener (taskNewItem)
   return taskNewItem;
 }
 
-// Функция удаления задачи
-function deleteTask (cloneNode) {
-  cloneNode.querySelector('.todo__button_type_delete').addEventListener('click', (evt) => {
-    evt.target.closest('.todo__item').remove();
-  })
+// Функция кнопки удаления задачи
+function deleteTask (evt) {
+  evt.target.closest('.todo__item').remove();
+}
+
+//Функция кнопки копирования задачи
+function copyTask (evt) {
+    const copyTodoItem = evt.target.closest('.todo__item');
+    const newTodoItem = copyTodoItem.cloneNode(true);
+
+    todoEventListener (newTodoItem);
+    todoList.prepend(newTodoItem);
+}
+
+//Функция слушателей элементов
+function todoEventListener (cloneNode) {
+  cloneNode.querySelector('.todo__button_type_delete').addEventListener('click', deleteTask);
+  cloneNode.querySelector('.todo__button_type_copy').addEventListener('click', copyTask);
 }
 
 // Функция добавления новой задачи на страницу
