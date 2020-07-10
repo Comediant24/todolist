@@ -1,4 +1,4 @@
-const taskAddFormTemplate = document.querySelector('#form-todo-list').content;
+// const taskAddFormTemplate = document.querySelector('#form-todo-list').content;
 const taskAddTemplate = document.querySelector('#todo-list').content;
 const todoList = document.querySelector('.todo__list');
 
@@ -13,8 +13,10 @@ const taskStart = [
 
 // Функция инициализации формы для новой задачи
 function createAddTaskForm () {
-  const taskAddItem = taskAddFormTemplate.cloneNode(true);
-  
+  const taskAddItem = taskAddTemplate.cloneNode(true);
+  taskAddItem.querySelector('.todo__item-form').classList.toggle('todo__item-form_hidden');
+  taskAddItem.querySelector('.todo__item-task').classList.toggle('todo__item-task_hidden');
+
   saveTask(taskAddItem);
   return taskAddItem;
 }
@@ -70,13 +72,18 @@ function deleteAddTaskForm (evt) {
 // Функция обработчика отправки введеных значений формы
 function formSubmitHandlerSaveTask (evt) {
   evt.preventDefault();
-  const titleForm = document.querySelector('.todo__input_type_title').value;
-  const descriptionForm = document.querySelector('.todo__input_type_description').value;
-  deleteAddTaskForm (evt);
-  renderNewTask (titleForm, descriptionForm);
+  const task = evt.target.closest('.todo__item')
+  
+  task.querySelector('.todo__title').textContent = task.querySelector('.todo__input_type_title').value;
+  task.querySelector('.todo__description').textContent = task.querySelector('.todo__input_type_description').value;
+
+  task.querySelector('.todo__item-form').classList.toggle('todo__item-form_hidden');
+  task.querySelector('.todo__item-task').classList.toggle('todo__item-task_hidden');
+
+  todoEventListener(task);
 }
 
-// Функция слушателя кнопки сохранить формы новой задачи
+// Функция слушателя кнопки Сохранения формы новой задачи
 function saveTask (cloneNode) {
   cloneNode.querySelector('.todo__form').addEventListener('submit', formSubmitHandlerSaveTask);
 }

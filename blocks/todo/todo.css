@@ -11,10 +11,14 @@
   margin-bottom: 10px;
 }
 
-.todo__item_type_task {
+.todo__item-task {
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+
+.todo__item-task_hidden {
+  display: none;
 }
 
 .todo__text-wrapper {
@@ -68,6 +72,14 @@
   color: #BAC3CA;
   padding: 0px;
   margin: 0;
+}
+
+.todo__item-form {
+  display: block;
+}
+
+.todo__item-form_hidden {
+  display: none;
 }
 
 .todo__input-conteier {
