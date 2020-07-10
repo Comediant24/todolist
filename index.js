@@ -47,7 +47,7 @@ function copyTask (evt) {
     const newTodoItem = copyTodoItem.cloneNode(true);
 
     todoEventListener (newTodoItem);
-    todoList.prepend(newTodoItem);
+    copyTodoItem.after(newTodoItem);
 }
 
 //Функция слушателей элементов
