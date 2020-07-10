@@ -11,8 +11,13 @@
   margin-bottom: 10px;
 }
 
+.todo__item_type_task {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 
-.todo__item-wrapper {
+.todo__text-wrapper {
   max-width: 70%;
 }
 
