@@ -45,17 +45,32 @@ function deleteTask (evt) {
 
 //Функция кнопки копирования задачи
 function copyTask (evt) {
-    const copyTodoItem = evt.target.closest('.todo__item');
-    const newTodoItem = copyTodoItem.cloneNode(true);
+  const copyTodoItem = evt.target.closest('.todo__item');
+  const newTodoItem = copyTodoItem.cloneNode(true);
 
-    todoEventListener (newTodoItem);
-    copyTodoItem.after(newTodoItem);
+  todoEventListener (newTodoItem);
+  copyTodoItem.after(newTodoItem);
+}
+
+// Функция редактирования задачи
+editTask = (evt) => {
+  console.log()
+  const editItemTask = evt.target.closest('.todo__item');
+  
+  editItemTask.querySelector('.todo__item-form').classList.toggle('todo__item-form_hidden');
+  editItemTask.querySelector('.todo__item-task').classList.toggle('todo__item-task_hidden');
+
+  editItemTask.querySelector('.todo__input_type_title').value = editItemTask.querySelector('.todo__title').textContent;
+  editItemTask.querySelector('.todo__input_type_description').value = editItemTask.querySelector('.todo__description').textContent;
+
+  saveTask(editItemTask);
 }
 
 //Функция слушателей элементов
 function todoEventListener (cloneNode) {
   cloneNode.querySelector('.todo__button_type_delete').addEventListener('click', deleteTask);
   cloneNode.querySelector('.todo__button_type_copy').addEventListener('click', copyTask);
+  cloneNode.querySelector('.todo__button_type_edit').addEventListener('click', editTask);
 }
 
 // Функция добавления новой задачи на страницу
