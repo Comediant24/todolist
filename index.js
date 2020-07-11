@@ -7,17 +7,17 @@ const buttonTaskAdd = document.querySelector('.task__button-add');
 const taskStart = [
   {
   title: 'My Great task',
-  description: 'write them down!'
-  }
+  description: 'write them down!',
+  },
 ];
 
-toggleDisplayTask = cloneNode => {
+const toggleDisplayTask = cloneNode => {
   cloneNode.querySelector('.todo__item-form').classList.toggle('todo__item-form_hidden');
   cloneNode.querySelector('.todo__item-task').classList.toggle('todo__item-task_hidden');
 };
 
 // Функция инициализации формы для новой задачи
-createAddTaskForm = () => {
+const createAddTaskForm = () => {
   const taskAddItem = taskAddTemplate.cloneNode(true);
 
   toggleDisplayTask(taskAddItem);
@@ -26,30 +26,30 @@ createAddTaskForm = () => {
 };
 
 // Функция добавления формы новой задачи на страницу
-renderAddTaskForm = () => {
+const renderAddTaskForm = () => {
   const taskAddForm = createAddTaskForm();
   todoList.prepend(taskAddForm);
 };
 
 // Функция инициализации новой задачи 
-createStartTask = (title, description) => {
+const createStartTask = (title, description) => {
   const taskNewItem = taskAddTemplate.cloneNode(true);
   taskNewItem.querySelector('.todo__item').classList.remove('todo__item_type_add');
 
   taskNewItem.querySelector('.todo__title').textContent = title;
   taskNewItem.querySelector('.todo__description').textContent = description;
   
-  todoEventListener (taskNewItem)
+  todoEventListener (taskNewItem);
   return taskNewItem;
 };
 
 // Функция кнопки удаления задачи
-deleteTask = evt => {
+const deleteTask = evt => {
   evt.target.closest('.todo__item').remove();
 };
 
 // Функция кнопки копирования задачи
-copyTask = evt => {
+const copyTask = evt => {
   const copyTodoItem = evt.target.closest('.todo__item');
   const newTodoItem = copyTodoItem.cloneNode(true);
 
@@ -58,7 +58,7 @@ copyTask = evt => {
 };
 
 // Функция редактирования задачи
-editTask = evt => {
+const editTask = evt => {
   const editItemTask = evt.target.closest('.todo__item');
   toggleDisplayTask (editItemTask);
 
@@ -76,13 +76,13 @@ function todoEventListener (cloneNode) {
 }  
 
 // Функция добавления новой задачи на страницу
-renderStartTask = (title, description) => {
+const renderStartTask = (title, description) => {
   const taskAddNew = createStartTask(title, description);
   todoList.prepend(taskAddNew);
 };
 
 // Функция обработчика отправки введеных значений формы
-formSubmitHandlerSaveTask = evt => {
+const formSubmitHandlerSaveTask = evt => {
   evt.preventDefault();
   const task = evt.target.closest('.todo__item');
 
@@ -95,7 +95,7 @@ formSubmitHandlerSaveTask = evt => {
 };
 
 // Функция слушателя кнопки Сохранения формы новой задачи
-saveTask = cloneNode => {
+const saveTask = cloneNode => {
   cloneNode.querySelector('.todo__form').addEventListener('submit', formSubmitHandlerSaveTask);
 };
 
