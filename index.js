@@ -19,7 +19,7 @@ toggleDisplayTask = cloneNode => {
 // Функция инициализации формы для новой задачи
 createAddTaskForm = () => {
   const taskAddItem = taskAddTemplate.cloneNode(true);
-  
+
   toggleDisplayTask(taskAddItem);
   saveTask(taskAddItem);
   return taskAddItem;
@@ -32,9 +32,10 @@ renderAddTaskForm = () => {
 };
 
 // Функция инициализации новой задачи 
-createNewTask = (title, description) => {
+createStartTask = (title, description) => {
   const taskNewItem = taskAddTemplate.cloneNode(true);
-  
+  taskNewItem.querySelector('.todo__item').classList.remove('todo__item_type_add');
+
   taskNewItem.querySelector('.todo__title').textContent = title;
   taskNewItem.querySelector('.todo__description').textContent = description;
   
@@ -75,16 +76,17 @@ function todoEventListener (cloneNode) {
 }  
 
 // Функция добавления новой задачи на страницу
-renderNewTask = (title, description) => {
-  const taskAddNew = createNewTask(title, description);
+renderStartTask = (title, description) => {
+  const taskAddNew = createStartTask(title, description);
   todoList.prepend(taskAddNew);
 };
 
 // Функция обработчика отправки введеных значений формы
 formSubmitHandlerSaveTask = evt => {
   evt.preventDefault();
-  const task = evt.target.closest('.todo__item')
-  
+  const task = evt.target.closest('.todo__item');
+
+  task.classList.remove('todo__item_type_add');
   task.querySelector('.todo__title').textContent = task.querySelector('.todo__input_type_title').value;
   task.querySelector('.todo__description').textContent = task.querySelector('.todo__input_type_description').value;
   
@@ -95,17 +97,17 @@ formSubmitHandlerSaveTask = evt => {
 // Функция слушателя кнопки Сохранения формы новой задачи
 saveTask = cloneNode => {
   cloneNode.querySelector('.todo__form').addEventListener('submit', formSubmitHandlerSaveTask);
-}
+};
 
 // Инициализация стартовых задач
 taskStart.forEach (item => {
-  renderNewTask(item.title, item.description);
-})
+  renderStartTask(item.title, item.description);
+});
 
 // Слушатель кнопки # Добавить задачу
 buttonTaskAdd.addEventListener('click', () => {
   const todoItem = todoList.querySelector('.todo__item');
-  if ( todoItem == null || !(todoItem.classList.contains('todo__item_type_add')) ) {
+  if ( todoItem == null || (!todoItem.classList.contains('todo__item_type_add')) ) {
     renderAddTaskForm();
   } 
 });
