@@ -35,10 +35,22 @@ const createAddTaskForm = () => {
   return taskAddItem;
 };
 
+// Функция слушателя Инпута заголовка задачи
+const inputListener = (element) => {
+  element.addEventListener('input', () => {
+    isValid(element);
+  });
+};
+
 // Функция добавления формы новой задачи на страницу
 const renderAddTaskForm = () => {
   const taskAddForm = createAddTaskForm();
   todoList.prepend(taskAddForm);
+
+  const editFormElement = todoList.querySelector('.todo__input_type_title');
+  isValid(editFormElement);
+  
+  inputListener (editFormElement);
 };
 
 // Функция инициализации Стартовой задачи 
@@ -67,15 +79,47 @@ const copyTask = evt => {
   copyTodoItem.after(newTodoItem);
 };
 
+// Функция получения инпута Заголовка Задачи
+const createFormElement = cloneNode => {
+  return cloneNode.querySelector('.todo__input_type_title');
+}
+
+// Функция показа ошибки валидации инпута
+const showInputError = (element, errorMessage) => {
+  element.classList.add('todo__input_type_error');
+  element.closest('.todo__form').querySelector('#title-input-error').textContent = errorMessage;
+};
+
+// Функция снятия ошибки валидации инпута
+const hideInputError = (element) => {
+  element.classList.remove('todo__input_type_error');
+  element.closest('.todo__form').querySelector('#title-input-error').textContent = '';
+};
+
+// Функция проверки валидности инпута
+const isValid = element => {
+  console.log(element.validity.valid);
+  if (!element.validity.valid) {
+    showInputError(element, element.validationMessage);
+  } else {
+    hideInputError(element);
+  }
+};
+
 // Функция Редактирования задачи
 const editTask = evt => {
   const editItemTask = evt.target.closest('.todo__item');
   toggleDisplayTask (editItemTask);
-
+  
   editItemTask.querySelector('.todo__input_type_title').value = editItemTask.querySelector('.todo__title').textContent;
   editItemTask.querySelector('.todo__input_type_description').value = editItemTask.querySelector('.todo__description').textContent;
   
-  escEditTask (editItemTask);
+  const editFormElement = createFormElement(editItemTask);
+  
+  isValid(editFormElement);
+  inputListener (editFormElement);
+  
+  escEditTask(editItemTask);
   saveTask(editItemTask);
 };
 

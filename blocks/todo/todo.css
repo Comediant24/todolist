@@ -109,3 +109,12 @@
 .todo__input_type_description {
   margin-top: 3px;
 }
+
+.todo__input_type_error {
+  background-color: #fff4f4;
+}
+
+.todo__input-error {
+  font-size: 10px;
+  color: #fb9292;
+}

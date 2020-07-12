@@ -61,9 +61,10 @@
         </div>
       </div>
       <div class="todo__item-form todo__item-form_hidden">
-        <form class="todo__item-wrapper todo__form" name="todo-task" action="#" method="POST">
+        <form class="todo__item-wrapper todo__form" name="todo-task" action="#" method="POST" novalidate>
           <fieldset class="todo__input-conteier">
-            <input class="todo__title todo__input todo__input_type_title" autocomplete="off" name="todo-title" type="text" placeholder="Title task" required>
+            <input class="todo__title todo__input todo__input_type_title todo__input_type_error" autocomplete="off" name="todo-title" type="text" placeholder="Title task" required>
+            <span id="title-input-error" class="todo__input-error"></span>
             <input class="todo__description todo__input todo__input_type_description" autocomplete="off" name="todo-discription" type="text" placeholder="Discription task">
           </fieldset>
           <div class="todo__button-wrapper">
