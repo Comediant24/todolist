@@ -1,8 +1,8 @@
-// const taskAddFormTemplate = document.querySelector('#form-todo-list').content;
+const root = document.querySelector('.root');
+const buttonTaskAdd = document.querySelector('.task__button-add');
+
 const taskAddTemplate = document.querySelector('#todo-list').content;
 const todoList = document.querySelector('.todo__list');
-
-const buttonTaskAdd = document.querySelector('.task__button-add');
 
 const taskStart = [
   {
@@ -11,6 +11,16 @@ const taskStart = [
   },
 ];
 
+// Функция отмены Создания формы задачи по нажатию Esc
+root.addEventListener('keydown', (evt) => {
+  if (evt.key == 'Escape') {
+    if (root.querySelector('.todo__item_type_add')) {
+      root.querySelector('.todo__item').remove()
+    }
+  }
+});
+
+// Функция переключения с Формы на Задачу
 const toggleDisplayTask = cloneNode => {
   cloneNode.querySelector('.todo__item-form').classList.toggle('todo__item-form_hidden');
   cloneNode.querySelector('.todo__item-task').classList.toggle('todo__item-task_hidden');
@@ -31,7 +41,7 @@ const renderAddTaskForm = () => {
   todoList.prepend(taskAddForm);
 };
 
-// Функция инициализации новой задачи 
+// Функция инициализации Стартовой задачи 
 const createStartTask = (title, description) => {
   const taskNewItem = taskAddTemplate.cloneNode(true);
   taskNewItem.querySelector('.todo__item').classList.remove('todo__item_type_add');
@@ -53,18 +63,19 @@ const copyTask = evt => {
   const copyTodoItem = evt.target.closest('.todo__item');
   const newTodoItem = copyTodoItem.cloneNode(true);
 
-  todoEventListener (newTodoItem);
+  todoEventListener(newTodoItem);
   copyTodoItem.after(newTodoItem);
 };
 
-// Функция редактирования задачи
+// Функция Редактирования задачи
 const editTask = evt => {
   const editItemTask = evt.target.closest('.todo__item');
   toggleDisplayTask (editItemTask);
 
   editItemTask.querySelector('.todo__input_type_title').value = editItemTask.querySelector('.todo__title').textContent;
   editItemTask.querySelector('.todo__input_type_description').value = editItemTask.querySelector('.todo__description').textContent;
-
+  
+  escEditTask (editItemTask);
   saveTask(editItemTask);
 };
 
@@ -73,13 +84,24 @@ function todoEventListener (cloneNode) {
   cloneNode.querySelector('.todo__button_type_delete').addEventListener('click', deleteTask);
   cloneNode.querySelector('.todo__button_type_copy').addEventListener('click', copyTask);
   cloneNode.querySelector('.todo__button_type_edit').addEventListener('click', editTask);
-}  
+}
 
-// Функция добавления новой задачи на страницу
+// Функция добавления Стартовой задачи на страницу
 const renderStartTask = (title, description) => {
   const taskAddNew = createStartTask(title, description);
   todoList.prepend(taskAddNew);
 };
+
+// Функция отмены редактирования задачи по нажатию Esc
+function escEditTask (cloneNode) {
+  cloneNode.closest('.root').addEventListener ('keydown', (evt) => {
+    if (!cloneNode.querySelector('.todo__item-form').classList.contains('todo__item-form_hidden')) {
+      if (evt.key == 'Escape') {
+        toggleDisplayTask(cloneNode);
+      }
+    }
+  })
+}
 
 // Функция обработчика отправки введеных значений формы
 const formSubmitHandlerSaveTask = evt => {
@@ -99,7 +121,7 @@ const saveTask = cloneNode => {
   cloneNode.querySelector('.todo__form').addEventListener('submit', formSubmitHandlerSaveTask);
 };
 
-// Инициализация стартовых задач
+// Инициализация Стартовых задач
 taskStart.forEach (item => {
   renderStartTask(item.title, item.description);
 });
