@@ -11,7 +11,7 @@ module.exports = {
   },
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
-    'semi': ['error', 'always'],
+    'semi': [2, 'always'],
     'arrow-parens': ['error', 'as-needed'],
     'object-curly-spacing': ['error', 'always'],
     'array-bracket-spacing': ['error', 'never'],

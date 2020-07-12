@@ -84,6 +84,8 @@ function todoEventListener (cloneNode) {
   cloneNode.querySelector('.todo__button_type_delete').addEventListener('click', deleteTask);
   cloneNode.querySelector('.todo__button_type_copy').addEventListener('click', copyTask);
   cloneNode.querySelector('.todo__button_type_edit').addEventListener('click', editTask);
+  cloneNode.querySelector('.todo__title').addEventListener('click', editTask);
+  cloneNode.querySelector('.todo__description').addEventListener('click', editTask);
 }
 
 // Функция добавления Стартовой задачи на страницу
