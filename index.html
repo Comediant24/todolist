@@ -3,32 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./vendor/normalize.css">
+  <meta name="description" content="Самостоятельная работа по пройденным темама в Я.Практикуму">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Document</title>
+  <title>Task Manager</title>
 </head>
 <body class="root">
   <div class="page">
     
-  <header class="header">
-    <h1 class="header__title">All Tasks</h1>
-  </header>
+    <header class="header">
+      <h1 class="header__title">All Tasks</h1>
+    </header>
 
-  <main class="content">
-    <section class="task">
-      <h2 class="task__day-title">Today</h2>
-      <button class="button task__button-add">
-        <svg width="40" height="40" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-          d="M32.5 18.5C32.5 17.9477 32.0523 17.5 31.5 17.5H28.5C27.9477 17.5 27.5 17.9477 27.5 18.5V26.5C27.5 27.0523 27.0523 27.5 26.5 27.5H18.5C17.9477 27.5 17.5 27.9477 17.5 28.5V31.5C17.5 32.0523 17.9477 32.5 18.5 32.5H26.5C27.0523 32.5 27.5 32.9477 27.5 33.5V41.5C27.5 42.0523 27.9477 42.5 28.5 42.5H31.5C32.0523 42.5 32.5 42.0523 32.5 41.5V33.5C32.5 32.9477 32.9477 32.5 33.5 32.5H41.5C42.0523 32.5 42.5 32.0523 42.5 31.5V28.5C42.5 27.9477 42.0523 27.5 41.5 27.5H33.5C32.9477 27.5 32.5 27.0523 32.5 26.5V18.5ZM30 5C16.2 5 5 16.2 5 30C5 43.8 16.2 55 30 55C43.8 55 55 43.8 55 30C55 16.2 43.8 5 30 5ZM30 50C18.975 50 10 41.025 10 30C10 18.975 18.975 10 30 10C41.025 10 50 18.975 50 30C50 41.025 41.025 50 30 50Z"
-          fill="#40C785"/>
-          </svg>
-      </button>
-    </section>
-    <section class="todo">
-      <ul class="todo__list"></ul>
-    </section>
-  </main>
+    <main class="content">
+      <section class="task">
+        <h2 class="task__day-title">Today</h2>
+        <button class="button task__button-add">
+          <svg width="40" height="40" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+            d="M32.5 18.5C32.5 17.9477 32.0523 17.5 31.5 17.5H28.5C27.9477 17.5 27.5 17.9477 27.5 18.5V26.5C27.5 27.0523 27.0523 27.5 26.5 27.5H18.5C17.9477 27.5 17.5 27.9477 17.5 28.5V31.5C17.5 32.0523 17.9477 32.5 18.5 32.5H26.5C27.0523 32.5 27.5 32.9477 27.5 33.5V41.5C27.5 42.0523 27.9477 42.5 28.5 42.5H31.5C32.0523 42.5 32.5 42.0523 32.5 41.5V33.5C32.5 32.9477 32.9477 32.5 33.5 32.5H41.5C42.0523 32.5 42.5 32.0523 42.5 31.5V28.5C42.5 27.9477 42.0523 27.5 41.5 27.5H33.5C32.9477 27.5 32.5 27.0523 32.5 26.5V18.5ZM30 5C16.2 5 5 16.2 5 30C5 43.8 16.2 55 30 55C43.8 55 55 43.8 55 30C55 16.2 43.8 5 30 5ZM30 50C18.975 50 10 41.025 10 30C10 18.975 18.975 10 30 10C41.025 10 50 18.975 50 30C50 41.025 41.025 50 30 50Z"
+            fill="#40C785"/>
+            </svg>
+        </button>
+      </section>
+      <section class="todo">
+        <ul class="todo__list"></ul>
+      </section>
+    </main>
 
   </div>
   
@@ -77,9 +77,6 @@
           </div>
         </form>
       </div>
-
-
-
     </li>
   </template>
   <script src="index.js"></script>
