@@ -1,6 +1,6 @@
 .page {
   margin: auto;
-  width: 500px;
+  width: clamp(350px, 90%, 600px);
   font-family: 'Noto Sans', sans-serif;
   color: #364655;
 }
