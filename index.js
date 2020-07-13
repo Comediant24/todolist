@@ -11,7 +11,7 @@ const taskStart = [
   },
 ];
 
-// Функция отмены Создания формы задачи по нажатию Esc
+// cлушатель отмены Создания формы задачи по нажатию Esc
 root.addEventListener('keydown', (evt) => {
   if (evt.key == 'Escape') {
     if (root.querySelector('.todo__item_type_add')) {
@@ -35,6 +35,36 @@ const createAddTaskForm = () => {
   return taskAddItem;
 };
 
+// Функция получения инпута Заголовка Задачи
+const createFormElement = cloneNode => {
+  return cloneNode.querySelector('.todo__input_type_title');
+};
+
+// Функция показа ошибки валидации инпута
+const showInputError = (element, errorMessage) => {
+  element.classList.add('todo__input_type_error');
+  element.closest('.todo__form').querySelector('#title-input-error').textContent = errorMessage;
+  element.closest('.todo__form').querySelector('.svg__button-path_save').setAttribute('fill', '#ff9f9f');
+  element.closest('.todo__form').querySelector('.todo__button_type_save').classList.add('todo__button_inactive');
+};
+
+// Функция снятия ошибки валидации инпута
+const hideInputError = (element) => {
+  element.classList.remove('todo__input_type_error');
+  element.closest('.todo__form').querySelector('#title-input-error').textContent = '';
+  element.closest('.todo__form').querySelector('.svg__button-path_save').setAttribute('fill', '#40C785');
+  element.closest('.todo__form').querySelector('.todo__button_type_save').classList.remove('todo__button_inactive');
+};
+
+// Функция проверки валидности инпута
+const isValid = element => {
+  if (!element.validity.valid) {
+    showInputError(element, element.validationMessage);
+  } else {
+    hideInputError(element);
+  }
+};
+
 // Функция слушателя Инпута заголовка задачи
 const inputListener = (element) => {
   element.addEventListener('input', () => {
@@ -50,7 +80,7 @@ const renderAddTaskForm = () => {
   const editFormElement = todoList.querySelector('.todo__input_type_title');
   isValid(editFormElement);
   
-  inputListener (editFormElement);
+  inputListener(editFormElement);
 };
 
 // Функция инициализации Стартовой задачи 
@@ -79,34 +109,15 @@ const copyTask = evt => {
   copyTodoItem.after(newTodoItem);
 };
 
-// Функция получения инпута Заголовка Задачи
-const createFormElement = cloneNode => {
-  return cloneNode.querySelector('.todo__input_type_title');
-}
-
-// Функция показа ошибки валидации инпута
-const showInputError = (element, errorMessage) => {
-  element.classList.add('todo__input_type_error');
-  element.closest('.todo__form').querySelector('#title-input-error').textContent = errorMessage;
-  element.closest('.todo__form').querySelector('.svg__button-path_save').setAttribute('fill', '#ff9f9f');
-  element.closest('.todo__form').querySelector('.todo__button_type_save').classList.add('todo__button_inactive');
-};
-
-// Функция снятия ошибки валидации инпута
-const hideInputError = (element) => {
-  element.classList.remove('todo__input_type_error');
-  element.closest('.todo__form').querySelector('#title-input-error').textContent = '';
-  element.closest('.todo__form').querySelector('.svg__button-path_save').setAttribute('fill', '#40C785');
-  element.closest('.todo__form').querySelector('.todo__button_type_save').classList.remove('todo__button_inactive');
-};
-
-// Функция проверки валидности инпута
-const isValid = element => {
-  if (!element.validity.valid) {
-    showInputError(element, element.validationMessage);
-  } else {
-    hideInputError(element);
-  }
+// Функция отмены Редактирования задачи по нажатию Esc
+const escEditTask = cloneNode => {
+  cloneNode.closest('.root').addEventListener ('keydown', (evt) => {
+    if (!cloneNode.querySelector('.todo__item-form').classList.contains('todo__item-form_hidden')) {
+      if (evt.key == 'Escape') {
+        toggleDisplayTask(cloneNode);
+      }
+    }
+  })
 };
 
 // Функция Редактирования задачи
@@ -141,19 +152,9 @@ const renderStartTask = (title, description) => {
   todoList.prepend(taskAddNew);
 };
 
-// Функция отмены редактирования задачи по нажатию Esc
-function escEditTask (cloneNode) {
-  cloneNode.closest('.root').addEventListener ('keydown', (evt) => {
-    if (!cloneNode.querySelector('.todo__item-form').classList.contains('todo__item-form_hidden')) {
-      if (evt.key == 'Escape') {
-        toggleDisplayTask(cloneNode);
-      }
-    }
-  })
-}
 
 // Функция обработчика отправки введеных значений формы
-const formSubmitHandlerSaveTask = evt => {
+function formSubmitHandlerSaveTask (evt) {
   evt.preventDefault();
   const task = evt.target.closest('.todo__item');
 
@@ -167,12 +168,12 @@ const formSubmitHandlerSaveTask = evt => {
   
   toggleDisplayTask(task);
   todoEventListener(task);
-};
+}
 
 // Функция слушателя кнопки Сохранения формы новой задачи
-const saveTask = cloneNode => {
+function saveTask (cloneNode) {
   cloneNode.querySelector('.todo__form').addEventListener('submit', formSubmitHandlerSaveTask);
-};
+}
 
 // Инициализация Стартовых задач
 taskStart.forEach (item => {
