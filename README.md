@@ -1,6 +1,6 @@
 # Task Manager - Самостоятельная работа по пройденным темам в Я.Практикум
 
-**Ссылка на проект в gh-pages: [Mesto Russia](https://comediant24.github.io/todolist/)**
+**Ссылка на проект в gh-pages: [Task Manager](https://comediant24.github.io/todolist/)**
 
 ## Обзор
 

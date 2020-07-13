@@ -48,6 +48,8 @@
   font-size: 24px;
   color: #364655;
   line-height: 1.4em;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .todo__button-wrapper {
@@ -77,6 +79,8 @@
   color: #BAC3CA;
   padding: 0px;
   margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .todo__item-form {

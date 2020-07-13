@@ -120,6 +120,15 @@ const escEditTask = cloneNode => {
   })
 };
 
+// Функция открытия редактора формы задачи по клику
+const editClickListener = (evt, element) => {
+  if (evt.target.classList.contains('todo__title')) {
+    element.querySelector('.todo__input_type_title').focus();
+  } else if (evt.target.classList.contains('todo__description')) {
+    element.querySelector('.todo__input_type_description').focus();
+    }
+};
+
 // Функция Редактирования задачи
 const editTask = evt => {
   const editItemTask = evt.target.closest('.todo__item');
@@ -129,7 +138,11 @@ const editTask = evt => {
   editItemTask.querySelector('.todo__input_type_description').value = editItemTask.querySelector('.todo__description').textContent;
   
   const editFormElement = createFormElement(editItemTask);
-  
+
+  editItemTask.addEventListener('click', (evt) => {
+    editClickListener(evt, editItemTask);
+  });
+
   isValid(editFormElement);
   inputListener (editFormElement);
 
