@@ -64,6 +64,10 @@
   opacity: 0.8;
 }
 
+.todo__button_inactive {
+  pointer-events: none;
+}
+
 .todo__button_type_save {
   opacity: 0.6;
 }

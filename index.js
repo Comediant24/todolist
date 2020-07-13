@@ -88,17 +88,20 @@ const createFormElement = cloneNode => {
 const showInputError = (element, errorMessage) => {
   element.classList.add('todo__input_type_error');
   element.closest('.todo__form').querySelector('#title-input-error').textContent = errorMessage;
+  element.closest('.todo__form').querySelector('.svg__button-path_save').setAttribute('fill', '#9aa8a1');
+  element.closest('.todo__form').querySelector('.todo__button_type_save').classList.add('todo__button_inactive');
 };
 
 // Функция снятия ошибки валидации инпута
 const hideInputError = (element) => {
   element.classList.remove('todo__input_type_error');
   element.closest('.todo__form').querySelector('#title-input-error').textContent = '';
+  element.closest('.todo__form').querySelector('.svg__button-path_save').setAttribute('fill', '#40C785');
+  element.closest('.todo__form').querySelector('.todo__button_type_save').classList.remove('todo__button_inactive');
 };
 
 // Функция проверки валидности инпута
 const isValid = element => {
-  console.log(element.validity.valid);
   if (!element.validity.valid) {
     showInputError(element, element.validationMessage);
   } else {
@@ -118,7 +121,7 @@ const editTask = evt => {
   
   isValid(editFormElement);
   inputListener (editFormElement);
-  
+
   escEditTask(editItemTask);
   saveTask(editItemTask);
 };
