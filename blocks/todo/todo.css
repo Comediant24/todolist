@@ -43,10 +43,11 @@
 
 .todo__title {
   font-weight: 500;
-  padding-bottom: 10px;
+  padding-bottom: 4px;
   margin: 0;
   font-size: 24px;
   color: #364655;
+  line-height: 1.4em;
 }
 
 .todo__button-wrapper {
@@ -88,22 +89,21 @@
 
 .todo__input-conteier {
   padding: 0;
+  margin: 0;
   border: 0;
   max-width: 70%;
 }
 
 .todo__input {
-  padding-bottom: 5px;
+  padding: 0;
   border: 0;
   width: 100%;
   box-sizing: border-box;
 }
 
-.todo__input:hover {
-  border-bottom: 1px solid #BAC3CA; 
-}
 .todo__input:focus {
-  border: 0; 
+  border-bottom: 1px solid #40C785;
+  outline: 0;
 }
 
 .todo__input:active {
@@ -111,7 +111,7 @@
 }
 
 .todo__input_type_description {
-  margin-top: 3px;
+  margin-top: 4px;
 }
 
 .todo__input_type_error {
