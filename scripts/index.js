@@ -45,7 +45,9 @@ const showInputError = (element, errorMessage) => {
   element.classList.add('todo__input_type_error');
   element.closest('.todo__form').querySelector('#title-input-error').textContent = errorMessage;
   element.closest('.todo__form').querySelector('.svg__button-path_save').setAttribute('fill', '#ff9f9f');
-  element.closest('.todo__form').querySelector('.todo__button_type_save').classList.add('todo__button_inactive');
+  const buttonSave = element.closest('.todo__form').querySelector('.todo__button_type_save');
+  buttonSave.classList.add('todo__button_inactive');
+  buttonSave.disabled = true;
 };
 
 // Функция снятия ошибки валидации инпута
@@ -53,7 +55,9 @@ const hideInputError = (element) => {
   element.classList.remove('todo__input_type_error');
   element.closest('.todo__form').querySelector('#title-input-error').textContent = '';
   element.closest('.todo__form').querySelector('.svg__button-path_save').setAttribute('fill', '#40C785');
-  element.closest('.todo__form').querySelector('.todo__button_type_save').classList.remove('todo__button_inactive');
+  const buttonSave = element.closest('.todo__form').querySelector('.todo__button_type_save');
+  buttonSave.classList.remove('todo__button_inactive');
+  buttonSave.disabled = false;
 };
 
 // Функция проверки валидности инпута
@@ -170,10 +174,6 @@ const renderStartTask = (title, description) => {
 function formSubmitHandlerSaveTask (evt) {
   evt.preventDefault();
   const task = evt.target.closest('.todo__item');
-
-  if (task.querySelector('.todo__input_type_title').classList.contains('todo__input_type_error')) {
-    return false;
-  };
 
   task.classList.remove('todo__item_type_add');
   task.querySelector('.todo__title').textContent = task.querySelector('.todo__input_type_title').value;
